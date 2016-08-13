@@ -4,7 +4,7 @@
 
 using namespace std;
 
-// DP solution O(n^2)
+// DP solution Time Complexity O(n) Space Complexity O(n)
 int getPathCountDp(vector <vector<int>> &matrix, vector <vector<int>> &soln, int  row, int col) {
   
     /* Mark first row and column since first row and down col are directly accessible      
@@ -24,18 +24,20 @@ int getPathCountDp(vector <vector<int>> &matrix, vector <vector<int>> &soln, int
           break;
       }
     }
-  
-    for(int i = 1; i <= row; i++) {
-        for(int j = 1; j <= col; j++) {
-            if (matrix[i][j] == 0) {
-              if((soln[i-1][j] > 0) && (soln[i][j-1] > 0)) {
+    int i = 1, j =1; 
+    int k = row + 1 + col + 1;
+    for(; k <= ((row+1) * (col+1)); j++, k++) {
+        if(j%(col+1) == 0) {
+            j = 1;
+            ++i;
+        }
+        if (matrix[i][j] == 0) {
+            if((soln[i-1][j] > 0) && (soln[i][j-1] > 0)) {
                 soln[i][j] = soln[i-1][j]+soln[i][j-1];
-              }
-              else if (soln[i-1][j] > 0) {
+            } else if (soln[i-1][j] > 0) {
                 soln[i][j] = soln[i-1][j];
-              } else if(soln[i][j-1] > 0) {
+            } else if(soln[i][j-1] > 0) {
                 soln[i][j] = soln[i][j-1];
-              }
             }
         }
     }
