@@ -10,14 +10,14 @@ int getPathCountDp(vector <vector<int>> &matrix, vector <vector<int>> &soln, int
     /* Mark first row and column since first row and down col are directly accessible      
      * elements if not walled 
     */
-    for(int i = 0; i <= col; i++) {
+    for(int i = 0; i <= row; i++) {
       if(matrix[i][0] == 0) {
           soln[i][0] = 1;
       } else {
           break;
       }
     }
-    for(int j = 0; j <= row; j++) {
+    for(int j = 0; j <= col; j++) {
       if(matrix[0][j] == 0) {
           soln[0][j] = 1;
       } else {
