@@ -105,10 +105,6 @@ vector<int> triggerCascade(vector<int> arr) {
             currMax.second = i;
         }
     }
-    /* Due to time constraints commenting out what may be a more complete and
-     * correct solution below though more expensive. 
-     */
-    /*
     // Time Complexity O(n2) for the backref traversal for every node
     // Space Complexity O(n) in addition to out - another vector of size n with
     // list of some variables lets say ~ O(n)
@@ -117,7 +113,6 @@ vector<int> triggerCascade(vector<int> arr) {
             out[(*it)] = out[i]; 
         }
     }
-    */
     return out;
 }
 
