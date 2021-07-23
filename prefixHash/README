@@ -1,0 +1,8 @@
+Approach #1: Prefix Hash [Accepted]
+Intuition
+
+For each word in the sentence, we'll look at successive prefixes and see if we saw them before.
+
+Algorithm
+
+Store all the roots in a Set structure. Then for each word, look at successive prefixes of that word. If you find a prefix that is a root, replace the word with that prefix. Otherwise, the prefix will just be the word itself, and we should add that to the final sentence answer.
