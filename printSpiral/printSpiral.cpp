@@ -5,41 +5,38 @@ using namespace std;
 
 // Program to print a matrix in spiral fashion
 void spiralPrint(vector <vector<int>>& matrix, int r, int c) {
-    int i = 0, k = 0, l = 0;
+    int start_row = 0, end_row = r - 1;
+    int start_col = 0, end_col = c - 1;
+
+    int i = 0, j = 0;
  
-    /*  k - starting row index
-        r - ending row index
-        l - starting column index
-        c - ending column index
-        i - iterator
-    */
-    while (k < r && l < c) {
+    while (start_row <= end_row && start_col <= end_col) {
         // Right Row Sweep (col-by-col)
-        for(i = l; i < c; i++) {
-                cout<<"\t"<<matrix[k][i];
+        for(j = start_col; j <= end_col; j++) {
+                cout<<"\t"<<matrix[start_row][j];
         }
-        k++;
+        start_row++;
 
         // Down Col Sweep (row-by-row)
-        for(i = k; i < r; i++) {
-                cout<<"\t"<<matrix[i][c-1];
+        for(i = start_row; i <= end_row; i++) {
+                cout<<"\t"<<matrix[i][end_col];
         }
-        c--;
+        end_col--;
 
-        if (k < r) {
+        if (start_row <= end_row) {
             // Left Row Sweep (col-by-col)
-            for(i = c-1; i >= l; i--) {
-                    cout<<"\t"<<matrix[r-1][i];
+            for(j = end_col; j >= start_col; j--) {
+                    cout<<"\t"<<matrix[end_row][j];
             }
-            r--;
+            end_row--;
         }
        
-        if (l < c) {
+        if (start_col <= end_col) {
             // Up Sweep Col (Row-by-row)
-            for(i = r-1; i >= k; i--) {
-                    cout<<"\t"<<matrix[i][l];
+            for(i = end_row; i >= start_row; i--) {
+                    cout<<"\t"<<matrix[i][start_col];
             }
-            l++;
+            start_col++;
         }
     }
 }
@@ -47,7 +44,10 @@ void spiralPrint(vector <vector<int>>& matrix, int r, int c) {
 // Main Function
 int main() {
     //vector <vector<int>> matrix = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
-    vector <vector<int>> matrix = {{1, 2, 7, 8}, {9, 3, 5, 6}, {17, 18, 19,20}};
+    vector <vector<int>> matrix = {{1, 2, 7, 8}, 
+                                   {9, 3, 5, 6}, 
+                                   {17, 18, 19,20}};
     spiralPrint(matrix, matrix.size(), matrix[0].size());
+    cout<<endl;
     return 0;
 }
