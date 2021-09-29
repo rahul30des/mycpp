@@ -5,7 +5,7 @@
 using namespace std;
 
 class Node {
-    public:
+   public:
   int value;
   Node *next;
   Node *prev;  
@@ -17,7 +17,7 @@ class SNode {
     Node *node;
 };
 
-char firstUnique(char *arr, int n) {
+int firstUnique(int *arr, int n) {
     int unique = INT_MIN;
     unordered_map <int, SNode*> umap (n);
     deque <Node*> dll;
@@ -27,13 +27,13 @@ char firstUnique(char *arr, int n) {
         // IsExists
        if(umap[arr[i]]) {
            SNode *tbd = umap[arr[i]];
-           if(tbd->flag == false) {
+           if(tbd->flag == true) {
+               tbd->flag = false;
                //  Iterate over DLL and find element to be deleted
                for(auto it = dll.begin(); it != dll.end(); it++) {
                    if((*it)->value == tbd->node->value) {
                       dll.erase(it);
-                      tbd->flag = true;
-                      tbd->node = NULL;                
+                      tbd->node = NULL;
                       break;
                    }
                }
@@ -42,7 +42,7 @@ char firstUnique(char *arr, int n) {
            SNode *tmp = new SNode;
            tmp->node = new Node;
            tmp->node->value = arr[i];
-           tmp->flag = false;
+           tmp->flag = true;
            umap[arr[i]] = tmp;
            dll.push_back(tmp->node);
        }
@@ -60,12 +60,12 @@ int main() {
     unsigned int n;
 
     cin>>n;
-   char arr[n];
+   int arr[n];
     for(int i = 0; i < n;i++) {
        cin>>arr[i];     
     }
 
-    cout<<firstUnique(arr, n);
+    cout<<firstUnique(arr, n)<<endl;
     return 0;
 }
 
