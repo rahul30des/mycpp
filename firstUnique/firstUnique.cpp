@@ -39,8 +39,8 @@ int firstUnique(int *arr, int n) {
                }
            }           
        } else {
-           SNode *tmp = new SNode;
-           tmp->node = new Node;
+           SNode *tmp = new SNode();
+           tmp->node = new Node();
            tmp->node->value = arr[i];
            tmp->flag = true;
            umap[arr[i]] = tmp;
