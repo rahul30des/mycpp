@@ -36,20 +36,21 @@ void processLife(vector <vector<int> > mat, vector < vector<int> >& out) {
                 ++count;   
           }
           // Bottom Left Sweep same row
-          if((j - 1 < col) && (i + 1 < row) && (mat[i+1][j-1])) {
+          if((j - 1 >= 0) && (i + 1 < row) && (mat[i+1][j-1])) {
                 ++count;   
           }
-           
+
           // Bottom Right Sweep same row
           if((j + 1 < col) && (i + 1 < row) && (mat[i+1][j+1])) {
                 ++count;   
           }
-        
+
           if(mat[i][j]) {    
             if((count == 2) || (count == 3)) {
                 out[i][j] = 1;
-                
-            }               
+            } else {
+                out[i][j] = 0;
+            }
           } else if(count == 3)   {
                 out[i][j] = 1; 
           }
@@ -70,7 +71,11 @@ void display(vector< vector<int> > out) {
 // To execute C++, please define "int main()"
 int main() {
   vector < vector<int> > mat(2, vector<int>(5, 0));
-  mat = {{1, 0, 1, 1, 1} , {0, 1, 0, 1, 1}};
+  //mat = {{1, 0, 1, 1, 1} , {0, 1, 0, 1, 1}};
+  mat = {{0,1,0},
+         {0,0,1},
+         {1,1,1},
+         {0,0,0}};
   vector < vector<int> > out (mat.size(), vector<int> (mat[0].size(), 0));
   processLife(mat, out);
   display(out);
