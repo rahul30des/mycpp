@@ -2,6 +2,11 @@
 #include <stack>
 #include <climits>
 
+/*
+ * Solution uses stack affinity for enq (first stack) and deq (second stack) which results in O(1) enq and amortized O(1) for deq for non-interleaved
+ * enq and deq. Solution can be tweaked to use first stack for both enq
+ * and deq operations and second stack as a swap space for ordering first stack in queue fashion for O(n) enq and 0(1) deq regardless of order of enq/deq
+ */
 using namespace std;
 
 class q {
